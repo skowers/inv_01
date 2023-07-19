@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet" />
+
+    <title>Cami : Invitación web</title>
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <section class="section-counter">
+        <ul>
+          <div class="nombre-std">&nbsp</div>
+          <p class="invitado">&nbsp TIEMPO PARA EL GRAN DIA</p>
+        </ul>
+        <div id="counter"></div>
+      </section>
+
+      <section class="section-ubicacion">
+        <a class="map" href="https://www.google.com/maps/dir/estilo+buenos+aires/@-34.725438,-58.3164282,13z/data=!3m1!4b1!4m9!4m8!1m1!4e2!1m5!1m1!1s0x95a32e0b55b574f3:0xbac3b5731bfaff7a!2m2!1d-58.2751219!2d-34.7255809?entry=ttu" target="_blank"></a>
+      </section>
+
+      <section class="section-video">
+
+        <div class="vid" onclick="abrirReproductor()"></div>
+
+        <div id="reproductorContainer">
+          <button id="cerrarBoton" onclick="cerrarReproductor()">X</button>
+          <video id="reproductor" controls>
+            <source id="videoSource" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

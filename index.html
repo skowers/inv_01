@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXX" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Cami : Invitación web</title>
   </head>
   <body>
@@ -20,11 +22,11 @@
 
     <main>
       <section class="section-counter">
-        <ul>
-          <div class="nombre-std">&nbsp</div>
-          <p class="invitado">&nbsp TIEMPO PARA EL GRAN DIA</p>
-        </ul>
-        <div id="counter"></div>
+        <div class="espacio">
+          <p class="cuenta-atras">CUENTA REGRESIVA</p>
+          <div id="counter"></div>
+        </div>
+        
       </section>
 
       <section class="section-ubicacion">
@@ -40,9 +42,37 @@
           </video>
         </div>
       </section>
+
+      <section class="section-asistencia">
+
+        <div id="abrirFormulariook"  class="obvio"></div>
+        <div id="abrirFormulariono"  class="nopuedo"></div>
+
+        <div id="formularioContainer">
+          <button id="cerrarFormulario">X</button>
+          <form id="formulario">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" required placeholder="Tu nombre completo" />
+            <label for="mensaje">Dejame un mensajito</label>
+            <textarea id="mensaje" rows="4" maxlength="500" required placeholder="Escribe tu mensaje aquí..."></textarea>
+            <button type="submit" id="enviarMensaje">ENVIAR</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section-relleno">
+      </section>
+
+      <section class="section-datos">
+
+      </section>
+
     </main>
 
-    <footer></footer>
+    <footer>
+      <div class="fifteen"><a href="https://n9.cl/fifteenlook" target="_blank">FIFTEENLOOK </a> Todos los derechos reservados 2023</div>
+
+    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>

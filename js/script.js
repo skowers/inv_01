@@ -1,3 +1,7 @@
+/* =================================================================*/
+/*                             CONTADOR                             */
+/* =================================================================*/
+
 // Establecer la fecha objetivo (puedes cambiarla según tus necesidades)
 var targetDate = new Date("2023-08-12T00:00:00");
 
@@ -25,12 +29,7 @@ function updateCounter() {
   var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
   // Formatear el contador como DÍAS:HH:MM:SS
-  var formattedTime = "<ul class='horizontal-list'>" +
-  "<li>" + days + " <span>DIAS</span></li>" +
-  "<li>" + (parseInt(hours) < 10 ? hours : parseInt(hours)) + " <span>HORAS</span></li>" +
-  "<li>" + (parseInt(minutes) < 10 ? minutes : parseInt(minutes)) + " <span>MINUTOS</span></li>" +
-  "<li>" + (parseInt(seconds) < 10 ? seconds : parseInt(seconds)) + " <span>SEGUNDOS</span></li>" +
-  "</ul>";
+  var formattedTime = "<div class='horizontal-list'>" + "<li>" + days + " <span>DIAS</span></li>" + "<li>" + (parseInt(hours) < 10 ? hours : parseInt(hours)) + " <span>HORAS</span></li>" + "<li>" + (parseInt(minutes) < 10 ? minutes : parseInt(minutes)) + " <span>MINUTOS</span></li>" + "<li>" + (parseInt(seconds) < 10 ? seconds : parseInt(seconds)) + " <span>SEGUNDOS</span></li>" + "</div>";
   // Actualizar el contenido del contador
   counter.innerHTML = formattedTime;
 }
@@ -38,28 +37,23 @@ function updateCounter() {
 // Actualizar el contador cada segundo
 setInterval(updateCounter, 1000);
 
+/* =================================================================*/
+/*                           REPRODUCTOR                            */
+/* =================================================================*/
+
 function abrirReproductor() {
   var boton = document.getElementById("boton");
   var reproductorContainer = document.getElementById("reproductorContainer");
   reproductorContainer.style.display = "block";
-  boton.style.display = "none";
+  reproductorContainer.style.animation = "aparecer 1s forwards";
 
-  // Agregar el evento para escuchar la tecla "Escape"
-  document.addEventListener("keydown", cerrarConEscape);
+  bloquearDesplazamiento = true;
+  // Desactivar desplazamiento
+  document.body.style.overflow = "hidden";
 }
 
-function cerrarConEscape(event) {
-  if (event.key === "Escape") {
-    var boton = document.getElementById("boton");
-    var reproductorContainer = document.getElementById("reproductorContainer");
-    reproductorContainer.style.display = "none";
-    boton.style.display = "block";
-
-    // Eliminar el evento del escucha de la tecla "Escape"
-    document.removeEventListener("keydown", cerrarConEscape);
-  }
-}
-
+var bloquearDesplazamiento = false;
+var estado = "";
 var reproductor = document.getElementById("reproductor");
 reproductor.addEventListener("ended", cerrarReproductor);
 
@@ -67,13 +61,59 @@ function cerrarReproductor() {
   var boton = document.getElementById("boton");
   var reproductorContainer = document.getElementById("reproductorContainer");
   var reproductor = document.getElementById("reproductor");
-  
-  reproductor.pause(); // Pausar la reproducción del video
-  reproductor.currentTime = 0; // Reiniciar el tiempo del video
-  
-  reproductorContainer.style.display = "none";
+  reproductorContainer.style.animation = "desaparecer 1s forwards";
+
+  setTimeout(function () {
+    reproductorContainer.style.display = "none"; // Ocultamos el reproductorContainer después de que termine la animación
+    reproductor.pause(); // Pausar la reproducción del video
+    reproductor.currentTime = 0; // Reiniciar el tiempo del video)
+  }, 900); // Tiempo igual a la duración de la animación (1000 ms = 1s)
+
+  bloquearDesplazamiento = false;
+  // Reactivar desplazamiento
+  document.body.style.overflow = "auto";
   boton.style.display = "block";
 }
 
+/* =================================================================*/
+/*                           ASISTENCIA                            */
+/* =================================================================*/
 
+document.getElementById("abrirFormulariook").addEventListener("click", function () {
+  document.getElementById("formularioContainer").style.display = "block";
+  estado = "Obvio que asistiré!!";
+  bloquearDesplazamiento = true;
+  // Desactivar desplazamiento
+  document.body.style.overflow = "hidden";
+});
 
+document.getElementById("abrirFormulariono").addEventListener("click", function () {
+  document.getElementById("formularioContainer").style.display = "block";
+  estado = "No puedo asistir :c";
+  bloquearDesplazamiento = true;
+  // Desactivar desplazamiento
+  document.body.style.overflow = "hidden";
+});
+
+document.getElementById("cerrarFormulario").addEventListener("click", function () {
+  document.getElementById("formularioContainer").style.display = "none";
+  bloquearDesplazamiento = false;
+  // Reactivar desplazamiento
+  document.body.style.overflow = "auto";
+});
+
+document.getElementById("enviarMensaje").addEventListener("click", function (event) {
+  event.preventDefault();
+  var nombre = document.getElementById("nombre").value;
+  var mensaje = document.getElementById("mensaje").value;
+
+  // Verificar si los campos están completos
+  if (nombre.trim() === "" || mensaje.trim() === "") {
+    alert("Por favor, completa todos los campos.");
+    return;
+  }
+
+  var enlaceWhatsapp = "https://wa.me/91123221141?text=" + encodeURIComponent("Soy " + nombre +" y "+ estado + "\n\n" + mensaje);
+  window.open(enlaceWhatsapp, "_blank");
+  document.getElementById("formularioContainer").style.display = "none";
+});

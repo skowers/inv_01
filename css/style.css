@@ -100,7 +100,6 @@ section {
   width: 7%; 
   height: 22%; 
   cursor: pointer;
-  background-color: #007bff3d;
 }
 
 
@@ -120,7 +119,6 @@ section {
   width: 21%; 
   height: 10%; 
   cursor: pointer;
-  background-color: #007bff3d;
 }
 
 @keyframes aparecer {
@@ -178,8 +176,7 @@ section {
   position: absolute;
   cursor: pointer;
   width: 13%; 
-  height: 15%; 
-  background-color: #007bff3d;
+  height: 15%;
 }
 .obvio {
   top: 72%; 
